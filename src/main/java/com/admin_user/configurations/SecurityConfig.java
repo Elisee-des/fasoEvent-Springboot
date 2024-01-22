@@ -32,7 +32,6 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 		
-		//http.csrf(c ->c.disable())
     	http.csrf(c -> c.disable())
 		
 		.authorizeHttpRequests(request -> request.requestMatchers("/admin-page")
