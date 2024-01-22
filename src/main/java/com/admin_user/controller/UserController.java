@@ -41,13 +41,13 @@ public class UserController {
 		return "login";
 	}
 	
-	@GetMapping("user-page")
+	@GetMapping("abonne-page")
 	public String userPage(Model model, Principal principal){
 		
 		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
-		model.addAttribute("user", userDetails);
+		model.addAttribute("abonne", userDetails);
 		
-		return "user";
+		return "abonne";
 	}
 	
 	@GetMapping("admin-page")
@@ -56,5 +56,9 @@ public class UserController {
 		model.addAttribute("admin", userDetails);
 		return "admin";
 	}
+	
+	
+	
+	
 	
 }

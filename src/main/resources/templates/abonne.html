@@ -49,7 +49,7 @@
 	</div>
 	
 	<div class="container">
-		<h2>Bienvenue, [[${user.getFullname()}]]</h2>
+		<h2>Bienvenue, [[${abonne.getFullname()}]]</h2>
 	
 		<span sec:authorize="isAuthenticated">
 				<a th:href="@{/logout}">

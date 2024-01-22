@@ -36,10 +36,17 @@ public class SecurityConfig {
 		
 		.authorizeHttpRequests(request -> request
 				.requestMatchers("/", "/accueil", "/assets_public/**").permitAll()
-				.requestMatchers("/admin-page")
-				.hasAuthority("ADMIN").requestMatchers("/user-page")
-				.hasAuthority("USER").requestMatchers("/registration","/css/**").permitAll()
+				
+				.requestMatchers("/admin-page").hasAuthority("ADMIN")
+				.requestMatchers("/abonne-page").hasAuthority("ABONNE")
+				.requestMatchers("/promoteur-page").hasAuthority("PROMOTEUR")
+				.requestMatchers("/registration","/css/**").permitAll()
 				.anyRequest().authenticated())
+				
+				/*.requestMatchers("/admin-page")
+				.hasAuthority("ADMIN").requestMatchers("/user-page")
+				.hasAuthority("ABONNE").requestMatchers("/registration","/css/**").permitAll()
+				.anyRequest().authenticated())*/
 		
 		.formLogin(form -> form.loginPage("/login").loginProcessingUrl("/login")
 				.successHandler(customSuccessHandler).permitAll())
