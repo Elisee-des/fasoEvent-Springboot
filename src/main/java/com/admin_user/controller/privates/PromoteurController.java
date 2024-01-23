@@ -30,5 +30,4 @@ public class PromoteurController {
 		return "private/promoteur/index";
 	}
 	
-
 }

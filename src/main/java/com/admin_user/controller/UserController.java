@@ -49,9 +49,5 @@ public class UserController {
 		model.addAttribute("admin", userDetails);
 		return "admin";
 	}
-	
-	
-	
-	
-	
+		
 }
