@@ -36,11 +36,17 @@ public class SecurityConfig {
 		
 		.authorizeHttpRequests(request -> request
 				.requestMatchers("/", "/accueil", "/assets_public/**").permitAll()
-				
+				.requestMatchers("/login", "/assets_private/**").permitAll()
 				.requestMatchers("/admin-page").hasAuthority("ADMIN")
+<<<<<<< HEAD
 				.requestMatchers("/abonne-page","/assets_private/**").hasAuthority("ABONNE")
 				.requestMatchers("/promoteur-page","/assets_private/**").hasAuthority("PROMOTEUR")
 				.requestMatchers("/registration","/css/**").permitAll()
+=======
+				.requestMatchers("/abonne-page").hasAuthority("ABONNE")
+				.requestMatchers("/promoteur-page").hasAuthority("PROMOTEUR")
+				.requestMatchers("/registration","/assets_private/**").permitAll()
+>>>>>>> elisee
 				.anyRequest().authenticated())
 				
 				/*.requestMatchers("/admin-page")
