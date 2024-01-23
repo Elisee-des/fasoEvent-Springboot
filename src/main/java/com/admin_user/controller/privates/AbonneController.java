@@ -23,7 +23,7 @@ public class AbonneController {
 	public String userPage(Model model, Principal principal){
 		
 		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
-		model.addAttribute("abonne", userDetails);
+		model.addAttribute("private/abonne/indexabonne", userDetails);
 		return "abonne";
 	}
 

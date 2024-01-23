@@ -38,8 +38,8 @@ public class SecurityConfig {
 				.requestMatchers("/", "/accueil", "/assets_public/**").permitAll()
 				
 				.requestMatchers("/admin-page").hasAuthority("ADMIN")
-				.requestMatchers("/abonne-page").hasAuthority("ABONNE")
-				.requestMatchers("/promoteur-page").hasAuthority("PROMOTEUR")
+				.requestMatchers("/abonne-page","/assets_private/**").hasAuthority("ABONNE")
+				.requestMatchers("/promoteur-page","/assets_private/**").hasAuthority("PROMOTEUR")
 				.requestMatchers("/registration","/css/**").permitAll()
 				.anyRequest().authenticated())
 				
