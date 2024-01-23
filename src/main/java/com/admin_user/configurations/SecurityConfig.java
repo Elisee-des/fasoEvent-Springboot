@@ -38,12 +38,9 @@ public class SecurityConfig {
 				.requestMatchers("/", "/accueil", "/assets_public/**").permitAll()
 				.requestMatchers("/login", "/assets_private/**").permitAll()
 				.requestMatchers("/admin-page").hasAuthority("ADMIN")
-				.requestMatchers("/abonne-page","/assets_private/**").hasAuthority("ABONNE")
-				.requestMatchers("/promoteur-page","/assets_private/**").hasAuthority("PROMOTEUR")
-				.requestMatchers("/abonne-page").hasAuthority("ABONNE")
 				.requestMatchers("/promoteur-page").hasAuthority("PROMOTEUR")
+				.requestMatchers("/abonne-page").hasAuthority("ABONNE")
 				.requestMatchers("/registration","/assets_private/**").permitAll()
-
 				.anyRequest().authenticated())
 				
 				/*.requestMatchers("/admin-page")
