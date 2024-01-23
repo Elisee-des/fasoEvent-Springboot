@@ -19,10 +19,17 @@ public class UserServiceImpl implements UserService{
 	private UserRepository userRepository;
 	
 	@Override
-	public User save(UserDto userDto) {
-		User user = new User(userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()) , userDto.getRole(), userDto.getFullname());
-		return userRepository.save(user);
-		 
-	}
+    public User save(UserDto userDto) {
+        // Définir le rôle par défaut à "ABONNE"
+        String defaultRole = "ABONNE";
+        
+        // Créer l'utilisateur avec le rôle par défaut
+        User user = new User(userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()), 
+                             userDto.getRole() != null ? userDto.getRole() : defaultRole, 
+                             userDto.getFullname());
+
+        // Enregistrer l'utilisateur dans la base de données
+        return userRepository.save(user);
+    }
 	
 }
