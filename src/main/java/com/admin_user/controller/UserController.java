@@ -23,23 +23,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	//Matting (les url)
-	@GetMapping("/registration")
-	public String getRegistrationPage(@ModelAttribute("user") UserDto userDto, Model model) {
-		return "register";//Avoir le meme retour pour PostMatting ainsi que la page html
-	}
 	
-	@PostMapping("/registration")
-	public String saveUser(@ModelAttribute("user") UserDto userDto, Model model) {
-		userService.save(userDto);
-		model.addAttribute("message", "Enregistrement reussi !");
-		return "register";
-	}
-	
-	@GetMapping("/login")
-	public String login() {
-		return "login";
-	}
 	
 	@GetMapping("abonne-page")
 	public String userPage(Model model, Principal principal){
@@ -50,12 +34,7 @@ public class UserController {
 		return "abonne";
 	}
 	
-	@GetMapping("admin-page")
-	public String adminPage(Model model, Principal principal){
-		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
-		model.addAttribute("admin", userDetails);
-		return "admin";
-	}
+
 	
 	
 	
