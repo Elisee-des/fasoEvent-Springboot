@@ -41,14 +41,7 @@ public class UserController {
 		return "login";
 	}
 	
-	@GetMapping("abonne-page")
-	public String userPage(Model model, Principal principal){
-		
-		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
-		model.addAttribute("abonne", userDetails);
-		
-		return "abonne";
-	}
+	
 	
 	@GetMapping("admin-page")
 	public String adminPage(Model model, Principal principal){
