@@ -17,30 +17,5 @@ import com.admin_user.service.UserService;
 @Controller
 public class UserController {
 	
-	@Autowired
-	UserDetailsService userDetailsService;
-	
-	@Autowired
-	private UserService userService;
-	
-	
-	
-	
-	
-<<<<<<< HEAD
-	@GetMapping("admin-page")
-	public String adminPage(Model model, Principal principal){
-		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
-		model.addAttribute("admin", userDetails);
-		return "admin";
-	}
-		
-=======
 
-	
-	
-	
-	
-	
->>>>>>> elisee
 }

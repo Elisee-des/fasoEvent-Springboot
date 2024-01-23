@@ -28,8 +28,6 @@ public class PublicController {
 	{
 		return "index";
 	}
-<<<<<<< HEAD
-=======
 	
 	@GetMapping("/login")
 	public String login() {
@@ -55,6 +53,4 @@ public class PublicController {
 		model.addAttribute("admin", userDetails);
 		return "private/admin/tableaudebord";
 	}
-
->>>>>>> elisee
 }
