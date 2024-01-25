@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService{
 	@Override
     public User save(UserDto userDto) {
         // Définir le rôle par défaut à "ABONNE"
-        String defaultRole = "ABONNE";
+        String defaultRole = "ADMIN";
         
         // Créer l'utilisateur avec le rôle par défaut
         User user = new User(userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()), 
