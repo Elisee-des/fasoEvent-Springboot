@@ -95,7 +95,6 @@ public class AdminController {
 		model.addAttribute("success", "Catégorie edité avec succès !");
 		/*return "redirect:/categories-liste";*/
 		return "private/admin/category/index";
-
 	}
 	
 	@GetMapping("/delete-{id}")
