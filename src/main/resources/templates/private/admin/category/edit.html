@@ -5,7 +5,7 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Gestion des catégories</title>
+	<title>Edition de [[${category.getNom()}]]</title>
 	<!-- plugins:css -->
 	<link rel="stylesheet" th:href="@{assets_private/vendors/mdi/css/materialdesignicons.min.css}">
 	<link rel="stylesheet" th:href="@{assets_private/vendors/base/vendor.bundle.base.css}">
@@ -152,7 +152,7 @@
 					<li class="nav-item nav-profile dropdown">
 						<a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
 							<img th:src="@{assets_private/images/faces/face5.jpg}" alt="profile" />
-							<span class="nav-profile-name">[[${admin.getFullname()}]]</span>
+							<span class="nav-profile-name">Louis Barnett</span>
 						</a>
 						<div class="dropdown-menu dropdown-menu-right navbar-dropdown"
 							aria-labelledby="profileDropdown">
@@ -226,27 +226,26 @@
 
 			<div class="main-panel">
 				<div class="content-wrapper">
-					<div class="message bg-success" th:if="${success !=null}">
-						<h3 style="color: #fff; text-align: center; padding: 12px;">[[${success}]]</h3>
-					</div>
 					<div class="row">
 						<div class="col-md-12 grid-margin">
 							<div class="d-flex justify-content-between flex-wrap">
 								<div class="d-flex align-items-end flex-wrap">
 									<div class="me-md-3 me-xl-5">
-										<h2>Gestion des catégories</h2>
+										<h2>Edition de la categorie <strong>[[${category.getNom()}]]</strong></h2>
 
 									</div>
 									<div class="d-flex">
 										<i class="mdi mdi-home text-muted hover-cursor"></i>
 										<p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Listes&nbsp;</p>
 									</div>
+									<div class="d-flex">
+										<p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Ajout&nbsp;</p>
+									</div>
 								</div>
 
 								<div class="d-flex justify-content-between align-items-end flex-wrap">
-									<a th:href="@{/categories-ajout}" class="btn btn-primary mt-2 mt-xl-0 text-white">
-										Ajouter une
-										catégorie</a>
+									<a th:href="@{/categories-liste}" class="btn btn-primary mt-2 mt-xl-0 text-white">
+										Retour</a>
 								</div>
 							</div>
 						</div>
@@ -256,56 +255,42 @@
 
 
 					<!-- premier tableau -->
-					<div class="row">
-						<div class="col-md-12 stretch-card">
+					<div class="row d-flex form-controlle-1">
+						<div class="col-md-6 grid-margin stretch-card">
 							<div class="card">
-								<div class="card-body">
-									<p class="card-title">Liste des catégories</p>
-									<div class="table-responsive">
-										<table id="recent-purchases-listing" class="table">
-											<thead>
-												<tr class="d-flex justify-content-between flex-wrap">
-													<th class="mt-2">Nom</th>
-													<th class="mr-4" style="margin-right: 90px;">Action</th>
-												</tr>
-											</thead>
-											<tbody>
+								<div class="card-body form-controlle-2">
 
-												<tr th:each="category : ${categories}"
-													class="d-flex justify-content-between flex-wrap">
-													<td th:text="${category.nom}" class="mt-3"></td>
-													<td>
-														<a th:href="@{/categorie-edit-{id}(id=${category.id})}"
-															class="btn btn-primary mt-2 mt-xl-0 text-white">Editer</a>
-														<a th:href="@{/categorie-delete/{id}(id=${category.id})}"
-															class="btn btn-danger mt-2 mt-xl-0 text-white">Supprimer</a>
-													</td>
-												</tr>
+									<form th:action="@{/update}" method="post" th:object="${category}"
+										class="forms-sample">
+										<div class="form-group">
+											<label for="exampleInputUsername1">Nom de la catégorie</label>
+											<input type="text" name="nom" th:value="${category.nom}" class="form-control"
+												id="exampleInputUsername1" placeholder="Entrez un nom">
+										</div>
 
-											</tbody>
-										</table>
-									</div>
+										<button type="submit" class="btn btn-primary me-2 w-100 text-white">Editer la
+											catégorie</button>
+									</form>
 								</div>
 							</div>
 						</div>
-					</div>
 
-					<!-- main-panel ends -->
+						<!-- main-panel ends -->
+					</div>
+					<!-- page-body-wrapper ends -->
 				</div>
-				<!-- page-body-wrapper ends -->
-			</div>
-			<!-- container-scroller -->
-			<!-- plugins:js -->
-			<script th:src="@{assets_private/vendors/base/vendor.bundle.base.js}"></script>
-			<!-- endinject -->
-			<!-- inject:js -->
-			<script th:src="@{assets_private/js/off-canvas.js}"></script>
-			<script th:src="@{assets_private/js/hoverable-collapse.js}"></script>
-			<script th:src="@{assets_private/js/template.js}"></script>
-			<!-- endinject -->
-			<!-- Custom js for this page-->
-			<script th:src="@{assets_private/js/file-upload.js}"></script>
-			<!-- End custom js for this page-->
+				<!-- container-scroller -->
+				<!-- plugins:js -->
+				<script th:src="@{assets_private/vendors/base/vendor.bundle.base.js}"></script>
+				<!-- endinject -->
+				<!-- inject:js -->
+				<script th:src="@{assets_private/js/off-canvas.js}"></script>
+				<script th:src="@{assets_private/js/hoverable-collapse.js}"></script>
+				<script th:src="@{assets_private/js/template.js}"></script>
+				<!-- endinject -->
+				<!-- Custom js for this page-->
+				<script th:src="@{assets_private/js/file-upload.js}"></script>
+				<!-- End custom js for this page-->
 </body>
 
 </html>

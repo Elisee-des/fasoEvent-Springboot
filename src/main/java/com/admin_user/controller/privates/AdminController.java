@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.admin_user.model.Category;
@@ -70,5 +72,36 @@ public class AdminController {
 		return "private/admin/category/index";
 	}
 	
+	@GetMapping("/categorie-edit-{id}")
+	public String editCategory(@PathVariable Long id, Model model, Principal principal)
+	{
+		Category category = categoriyService.getCategoryById(id);
+		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
+		List<Category> categories = categoriyService.getAllCategories();
+		model.addAttribute("admin", userDetails);
+		model.addAttribute("categories", categories);
+		model.addAttribute("category", category);
+		
+		return "private/admin/category/edit";
+	}
 	
+	@PostMapping("/update")
+	public String updateCategory(@ModelAttribute Category category, HttpSession session, Model model, Principal principal) {
+		categoriyService.ajoutCategory(category);
+		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
+		List<Category> categories = categoriyService.getAllCategories();
+		model.addAttribute("admin", userDetails);
+		model.addAttribute("categories", categories);
+		model.addAttribute("success", "Catégorie edité avec succès !");
+		/*return "redirect:/categories-liste";*/
+		return "private/admin/category/index";
+
+	}
+	
+	@GetMapping("/delete-{id}")
+	public String deleteCategory(@PathVariable Long id, HttpSession session) {
+		categoriyService.deleteCategory(id);
+		session.setAttribute("msg", "Employé supprimer avec succès !");
+		return "redirect:/";
+	}
 }

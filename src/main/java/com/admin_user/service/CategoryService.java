@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.Optional;
 import com.admin_user.dto.CategoryDto;
 import com.admin_user.model.Category;
 import com.admin_user.repositories.CategoryRepository;
@@ -30,5 +30,16 @@ public class CategoryService {
 		return categorieRepository.findAll();
 	}
 	
-	
+    public Category getCategoryById(Long id) {
+        Optional<Category> category = categorieRepository.findById(id);
+        return category.orElse(null);
+    }
+    
+    public void updateCategory(Category category) {
+        categorieRepository.save(category);
+    }
+    
+	public void deleteCategory(Long id) {
+		categorieRepository.deleteById(id);
+	}
 }
