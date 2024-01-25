@@ -46,11 +46,4 @@ public class PublicController {
 		return "public/auth/register";
 	}
 	
-	@GetMapping("/admin-page")
-	public String adminPage(Model model, Principal principal){
-		
-		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
-		model.addAttribute("admin", userDetails);
-		return "private/admin/tableaudebord";
-	}
 }

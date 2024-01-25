@@ -23188,3 +23188,15 @@ dl li {
 }
 
 /*# sourceMappingURL=maps/style.css.map */
+
+/*  Mon styles */
+
+.form-controlle-1 {
+	display: flex;
+	justify-content: center;
+	
+} 
+
+form-controlle-2 {
+	border-radius: 7px !important;
+}
