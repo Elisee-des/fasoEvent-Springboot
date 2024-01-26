@@ -38,7 +38,8 @@ public class AdminController {
 	}
 	
 	
-	/****************** Categories ****************/
+	/****************** CATEGORIES ****************/
+	
 	
 	@GetMapping("/categories-liste")
 	public String indexCategory(Principal principal, Model model)
@@ -104,4 +105,20 @@ public class AdminController {
 		session.setAttribute("success", "Catégorie supprimer avec succès !");
 		return "private/admin/category/index";
 	}
+	
+	
+	/****************** FIN CATEGORIES ******************/
+	
+	
+	/****************** UTILISATEURS ********************/
+	
+	
+	@GetMapping("/utilisateurs-liste")
+	public String indexUtilisateur(Principal principal, Model model)
+	{
+		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
+		model.addAttribute("admin", userDetails);
+		return "private/admin/users/index";
+	}
+
 }
