@@ -26,9 +26,8 @@
 		<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 			<div class="navbar-brand-wrapper d-flex justify-content-center">
 				<div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
-					<a class="navbar-brand brand-logo" href="index.html"><img th:src="@{assets_private/images/logo.svg}"
-							alt="logo" /></a>
-					<a class="navbar-brand brand-logo-mini" href="index.html"><img
+					<a class="navbar-brand brand-logo" href="/"><strong style="color: #ff6b3b;;">Faso</strong><strong>Event</strong></a>
+					<a class="navbar-brand brand-logo-mini" href="/"><img
 							th:src="@{assets_private/images/logo-mini.svg}" alt="logo" /></a>
 					<button class="navbar-toggler navbar-toggler align-self-center" type="button"
 						data-toggle="minimize">
@@ -207,15 +206,9 @@
 							<span class="menu-title">Catégories</span>
 						</a>
 					</li>
-					<li class="nav-item">
-						<a class="nav-link" th:href="@{/societes}">
-							<i class="mdi mdi-checkerboard  menu-icon"></i>
-							<span class="menu-title">Sociétés</span>
-						</a>
-					</li>
 
 					<li class="nav-item">
-						<a class="nav-link" href="pages/profil/profil.html">
+						<a class="nav-link" th:href="@{/profil-index}">
 							<i class="mdi mdi-account-box-outline menu-icon"></i>
 							<span class="menu-title">Profil</span>
 						</a>

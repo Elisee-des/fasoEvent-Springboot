@@ -120,5 +120,13 @@ public class AdminController {
 		model.addAttribute("admin", userDetails);
 		return "private/admin/users/index";
 	}
+	
+	@GetMapping("/profil-index")
+	public String indexProfil(Principal principal, Model model)
+	{
+		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
+		model.addAttribute("admin", userDetails);
+		return "private/admin/profil/index";
+	}
 
 }
