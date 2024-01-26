@@ -27,10 +27,6 @@ public class AdminController {
 	UserDetailsService userDetailsService;
 	
 	@Autowired
-	private UserService userService;
-	
-	
-	@Autowired
 	private CategoryService categoriyService;
 	
 	@GetMapping("/admin-page")
@@ -87,7 +83,7 @@ public class AdminController {
 	
 	@PostMapping("/update")
 	public String updateCategory(@ModelAttribute Category category, HttpSession session, Model model, Principal principal) {
-		categoriyService.ajoutCategory(category);
+		categoriyService.updateCategory(category);
 		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
 		List<Category> categories = categoriyService.getAllCategories();
 		model.addAttribute("admin", userDetails);
@@ -97,11 +93,15 @@ public class AdminController {
 		return "private/admin/category/index";
 
 	}
-	
-	@GetMapping("/delete-{id}")
-	public String deleteCategory(@PathVariable Long id, HttpSession session) {
+
+	@GetMapping("/categorie-delete-{id}")
+	public String deleteCategory(@PathVariable Long id, HttpSession session, Model model, Principal principal) {
 		categoriyService.deleteCategory(id);
-		session.setAttribute("msg", "Employé supprimer avec succès !");
-		return "redirect:/";
+		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
+		List<Category> categories = categoriyService.getAllCategories();
+		model.addAttribute("admin", userDetails);
+		model.addAttribute("categories", categories);
+		session.setAttribute("success", "Catégorie supprimer avec succès !");
+		return "private/admin/category/index";
 	}
 }
