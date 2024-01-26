@@ -27,10 +27,6 @@ public class AdminController {
 	UserDetailsService userDetailsService;
 	
 	@Autowired
-	private UserService userService;
-	
-	
-	@Autowired
 	private CategoryService categoriyService;
 	
 	@GetMapping("/admin-page")
@@ -42,7 +38,8 @@ public class AdminController {
 	}
 	
 	
-	/****************** Categories ****************/
+	/****************** CATEGORIES ****************/
+	
 	
 	@GetMapping("/categories-liste")
 	public String indexCategory(Principal principal, Model model)
@@ -87,7 +84,7 @@ public class AdminController {
 	
 	@PostMapping("/update")
 	public String updateCategory(@ModelAttribute Category category, HttpSession session, Model model, Principal principal) {
-		categoriyService.ajoutCategory(category);
+		categoriyService.updateCategory(category);
 		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
 		List<Category> categories = categoriyService.getAllCategories();
 		model.addAttribute("admin", userDetails);
@@ -96,11 +93,39 @@ public class AdminController {
 		/*return "redirect:/categories-liste";*/
 		return "private/admin/category/index";
 	}
-	
-	@GetMapping("/delete-{id}")
-	public String deleteCategory(@PathVariable Long id, HttpSession session) {
+
+	@GetMapping("/categorie-delete-{id}")
+	public String deleteCategory(@PathVariable Long id, HttpSession session, Model model, Principal principal) {
 		categoriyService.deleteCategory(id);
-		session.setAttribute("msg", "Employé supprimer avec succès !");
-		return "redirect:/";
+		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
+		List<Category> categories = categoriyService.getAllCategories();
+		model.addAttribute("admin", userDetails);
+		model.addAttribute("categories", categories);
+		session.setAttribute("success", "Catégorie supprimer avec succès !");
+		return "private/admin/category/index";
 	}
+	
+	
+	/****************** FIN CATEGORIES ******************/
+	
+	
+	/****************** UTILISATEURS ********************/
+	
+	
+	@GetMapping("/utilisateurs-liste")
+	public String indexUtilisateur(Principal principal, Model model)
+	{
+		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
+		model.addAttribute("admin", userDetails);
+		return "private/admin/users/index";
+	}
+	
+	@GetMapping("/profil-index")
+	public String indexProfil(Principal principal, Model model)
+	{
+		UserDetails userDetails = userDetailsService.loadUserByUsername(principal.getName());
+		model.addAttribute("admin", userDetails);
+		return "private/admin/profil/index";
+	}
+
 }
