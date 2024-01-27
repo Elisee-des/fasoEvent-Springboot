@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{assets_private/css/cssEven/styleEven.css}">
+    <title>Formulaire d'événement</title>
+</head>
+<body>
+
+<form th:action="@{/evenements}" method="post">
+    <label for="intitule">Intitulé:</label>
+    <input type="text" id="intitule" name="intitule" required><br>
+
+    <label for="categorie">Catégorie:</label>
+    <input type="text" id="categorie" name="categorie" required><br>
+
+    <label for="dateDebut">Date de début:</label>
+    <input type="date" id="dateDebut" name="dateDebut" required><br>
+
+    <label for="dateFin">Date de fin:</label>
+    <input type="date" id="dateFin" name="dateFin" required><br>
+
+    <label for="lieu">Lieu:</label>
+    <input type="text" id="lieu" name="lieu" required><br>
+
+    <!-- <label for="idPromoteur">ID Promoteur:</label>
+    <input type="text" id="idPromoteur" name="idPromoteur" required><br> -->
+
+    <button type="submit">Créer l'événement</button>
+</form>
+
+</body>
+</html>
