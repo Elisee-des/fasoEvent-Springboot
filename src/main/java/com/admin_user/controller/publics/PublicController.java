@@ -34,9 +34,19 @@ public class PublicController {
 		return "public/auth/login";
 	}
 	
+	@GetMapping("/options-incriptions")
+	public String optionInscription() {
+		return "public/auth/options";
+	}
+	
 	@GetMapping("/registration")
 	public String getRegistrationPage(@ModelAttribute("user") UserDto userDto, Model model) {
 		return "public/auth/register";
+	}
+
+	@GetMapping("/registration-promoteur")
+	public String getRegistrationPromoteurPage(@ModelAttribute("user") UserDto userDto, Model model) {
+		return "public/auth/register-promoteur";
 	}
 	
 	@PostMapping("/registration")
