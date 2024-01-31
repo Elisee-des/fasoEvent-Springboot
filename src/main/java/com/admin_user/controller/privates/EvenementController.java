@@ -14,6 +14,7 @@ public class EvenementController {
 	////////// Vers la page d'accueil ////////////////
 	@GetMapping("/ajout-evenement")
 	public String ajoutEven() {
+		//return "private/evenement/ajoutEven";
 		return "private/evenement/ajoutEven";
 	}
 	
