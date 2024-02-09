@@ -1,9 +1,6 @@
 package com.admin_user.controller.publics;
 
-import java.security.Principal;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,20 +36,27 @@ public class PublicController {
 		return "public/auth/options";
 	}
 	
+	@PostMapping("/registration-promoteur")
+	public String saveUserPromoteur(@ModelAttribute("userPromoteur") UserDto userDto, Model model) {
+		userService.save(userDto);
+		model.addAttribute("message", "Inscription reussi !");
+		return "public/auth/register-promoteur";
+	}
+	
+	@GetMapping("/registration-promoteur")
+	public String getRegistrationPromoteurPage(@ModelAttribute("userPromoteur") UserDto userDto, Model model) {
+		return "public/auth/register-promoteur";
+	}
+	
 	@GetMapping("/registration")
 	public String getRegistrationPage(@ModelAttribute("user") UserDto userDto, Model model) {
 		return "public/auth/register";
 	}
 
-	@GetMapping("/registration-promoteur")
-	public String getRegistrationPromoteurPage(@ModelAttribute("user") UserDto userDto, Model model) {
-		return "public/auth/register-promoteur";
-	}
-	
 	@PostMapping("/registration")
 	public String saveUser(@ModelAttribute("user") UserDto userDto, Model model) {
 		userService.save(userDto);
-		model.addAttribute("message", "Enregistrement reussi !");
+		model.addAttribute("message", "Inscription reussi !");
 		return "public/auth/register";
 	}
 	

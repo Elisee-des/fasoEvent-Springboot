@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
-import com.admin_user.dto.CategoryDto;
 import com.admin_user.model.Category;
 import com.admin_user.repositories.CategoryRepository;
 
