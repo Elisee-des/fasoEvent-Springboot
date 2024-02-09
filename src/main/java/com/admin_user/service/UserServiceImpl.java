@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService{
 	@Override
     public User save(UserDto userDto) {
         // Définir le rôle par défaut à "ABONNE"
-        String defaultRole = "ADMIN";
+        String defaultRole = "PROMOTEUR";
         
         // Créer l'utilisateur avec le rôle par défaut
         User user = new User(userDto.getEmail(), passwordEncoder.encode(userDto.getPassword()), 
@@ -30,6 +30,12 @@ public class UserServiceImpl implements UserService{
 
         // Enregistrer l'utilisateur dans la base de données
         return userRepository.save(user);
+    }
+	
+	// Implémentation de la nouvelle méthode findByUsername
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByEmail(username);
     }
 	
 }

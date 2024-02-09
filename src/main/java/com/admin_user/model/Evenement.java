@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -20,6 +22,7 @@ public class Evenement {
 	
 	private String intitule;
 	private String categorie;
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateDebut;
 
@@ -28,58 +31,78 @@ public class Evenement {
 
 	private String lieu;
 	
+	@ManyToOne
+	@JoinColumn(name = "promoteur_id")
+	private User promoteur;
 	
 	public Evenement() {
 		super();
 	}
 
-
-	public Evenement(String intitule, String categorie, Date dateDebut, Date dateFin, String lieu) {
+	public Evenement(String intitule, String categorie, Date dateDebut, Date dateFin, String lieu, User promoteur) {
 		this.intitule = intitule;
 		this.categorie = categorie;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.lieu = lieu;
+		this.promoteur = promoteur;
 	}
-	
-	
-	//Getters et Setters
-	
-	
+
+	// Getters et Setters
+
 	public String getIntitule() {
 		return intitule;
 	}
+
 	public void setIntitule(String intitule) {
 		this.intitule = intitule;
 	}
+
 	public String getCategorie() {
 		return categorie;
 	}
+
 	public void setCategorie(String categorie) {
 		this.categorie = categorie;
 	}
+
 	public Date getDateDebut() {
 		return dateDebut;
 	}
+
 	public void setDateDebut(Date dateDebut) {
 		this.dateDebut = dateDebut;
 	}
+
 	public Date getDateFin() {
 		return dateFin;
 	}
+
 	public void setDateFin(Date dateFin) {
 		this.dateFin = dateFin;
 	}
+
 	public String getLieu() {
 		return lieu;
 	}
+
 	public void setLieu(String lieu) {
 		this.lieu = lieu;
 	}
+
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public User getPromoteur() {
+		return promoteur;
+	}
+
+	public void setPromoteur(User promoteur) {
+		this.promoteur = promoteur;
 	}
 }

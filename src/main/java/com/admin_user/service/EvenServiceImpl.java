@@ -1,46 +1,43 @@
+/*/ EvenServiceImpl.java
 package com.admin_user.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.admin_user.model.Evenement;
-import com.admin_user.model.User; 
+import com.admin_user.model.User;
 import com.admin_user.repositories.EvenRepository;
 
 @Service
-public class EvenService {
+public class EvenServiceImpl implements EvenService {
 
     @Autowired
     private EvenRepository evenRepository;
 
+    @Override
     public Evenement ajouterEvenement(Evenement evenement) {
         return evenRepository.save(evenement);
     }
 
+    @Override
     public List<Evenement> getAllEvenements() {
         return evenRepository.findAll();
     }
-    
-    // Pour modifier un evenement
+
+    @Override
     public Evenement getEvenementById(Long id) {
-        Optional<Evenement> evenement = evenRepository.findById(id);
-        
-        if (evenement.isPresent()) {
-            return evenement.get();
-        }
-        return null;
+        return evenRepository.findById(id).orElse(null);
     }
-    
-    // Pour récupérer les événements par promoteur
+
+    @Override
     public List<Evenement> getEvenementsByPromoteur(User promoteur) {
         return evenRepository.findByPromoteur(promoteur);
     }
-    
+
+    @Override
     public void deleteEven(Long id) {
         evenRepository.deleteById(id);
     }
-    
-}
+}*/

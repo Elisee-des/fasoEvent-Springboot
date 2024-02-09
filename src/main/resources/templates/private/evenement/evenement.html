@@ -256,11 +256,11 @@
 	            <thead>
 	              <tr class="d-flex justify-content-between flex-wrap">
 					<th class="mt-3">Nom</th>
- 	                  <th class="mt-4">Catégorie</th>
+ 	                  <th class="mt-3">Catégorie</th>
 	                  <th class="mt-3">Lieu</th>
 	                  <th class="mt-3">Date debut</th>
-	                  <th class="mt-3">Date fin</th>
-	              	<th class="mr-4" style="margin-right: 90px;">Action</th>
+	                  <th class="mt-3" >Date fin</th>
+	              	<th class="mt-3" style="margin-right: 90px;">Action</th>
 	             <!--     <th>Promoteur</th>  --> 
 	              </tr>
             	</thead>
@@ -270,10 +270,10 @@
 								class="d-flex justify-content-between flex-wrap">
 								
 								<td th:text="${evenement.intitule}" class="mt-3"></td>
-								<td th:text="${evenement.intitule}" class="mt-3"></td>
+								<td th:text="${evenement.categorie}" class="mt-3"></td>
 								<td th:text="${evenement.lieu}" class="mt-3"></td>
 								<td th:text="${evenement.dateDebut}" class="mt-3"></td>
-								<td th:text="${evenement.dateFin}" class="mt-3"></td>
+								<td th:text="${evenement.dateFin}" class="mt-3" style="margin-right: 30px;"></td>
 								
 								<td><a class="btn btn-primary mt-2 mt-xl-0 text-white" th:href="@{/editEven/{id}(id=${evenement.id})}">Editer</a></td>
 								<td><a class="btn btn-primary mt-2 mt-xl-0 text-white" th:href="@{/deleteEven/{id}(id=${evenement.id})}">Supprimer</a></td>	

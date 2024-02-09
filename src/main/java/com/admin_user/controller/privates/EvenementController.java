@@ -38,7 +38,7 @@ public class EvenementController {
 	
 	
 	
-	@PostMapping("/evenement-action")
+	@PostMapping("/evenement-page")
 	public String ajouterEvenement(@ModelAttribute Evenement evenement, HttpSession session) {
 	    evenService.ajouterEvenement(evenement);
 	    // Mise à jour de la liste des événements
@@ -68,6 +68,8 @@ public class EvenementController {
 		return "redirect:/evenement-page";
 	}
 	
+	//Suppression d'un evenement
+	
 	@GetMapping("/deleteEven/{id}")
 	public String deleteEven(@PathVariable Long id, HttpSession session) {
 		
@@ -76,7 +78,5 @@ public class EvenementController {
 		return "redirect:/evenement-page";
 		
 	}
-
-	
 
 }
