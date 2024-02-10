@@ -37,10 +37,12 @@ public class SecurityConfig {
 		.authorizeHttpRequests(request -> request
 				.requestMatchers("/", "/accueil", "/assets_public/**").permitAll()
 				.requestMatchers("/login", "/assets_private/**").permitAll()
+				.requestMatchers("/options-incriptions", "/assets_private/**").permitAll()
 				.requestMatchers("/admin-page").hasAuthority("ADMIN")
 				.requestMatchers("/promoteur-page").hasAuthority("PROMOTEUR")
 				.requestMatchers("/abonne-page").hasAuthority("ABONNE")
 				.requestMatchers("/registration","/assets_private/**").permitAll()
+				.requestMatchers("/registration-promoteur","/assets_private/**").permitAll()
 				.anyRequest().authenticated())
 				
 				/*.requestMatchers("/admin-page")
