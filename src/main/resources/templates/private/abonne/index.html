@@ -6,7 +6,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Majestic Admin</title>
+  <title>Abonne page</title>
   <!-- plugins:css -->
   <link rel="stylesheet" th:href="@{assets_private/vendors/mdi/css/materialdesignicons.min.css}">
   <link rel="stylesheet" th:href="@{assets_private/vendors/base/vendor.bundle.base.css}">
@@ -22,12 +22,13 @@
 <body>
   <div class="container-scroller">
    
-    <!-- partial:partials/_navbar.html -->
+   <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="navbar-brand-wrapper d-flex justify-content-center">
         <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
-          <a class="navbar-brand brand-logo" href="index.html"><img th:src="@{assets_private/images/logo.svg}" alt="logo"/></a>
-          <a class="navbar-brand brand-logo-mini" href="index.html"><img th:src="@{assets_private/images/logo-mini.svg}" alt="logo"/></a>
+		<a class="navbar-brand brand-logo" href="index.html"><strong
+							style="color: #ff6b3b;;">Faso</strong><strong>Event</strong></a> 
+         <a class="navbar-brand brand-logo-mini" href="index.html"><img th:src="@{assets_private/images/logo-mini.svg}" alt="logo"/></a>
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
             <span class="mdi mdi-sort-variant"></span>
           </button>
@@ -170,27 +171,27 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">
+            <a class="nav-link" href="#">
               <i class="mdi mdi-home menu-icon"></i>
               <span class="menu-title">Tableau de bord</span>
             </a>
           </li>
          
           <li class="nav-item">
-            <a class="nav-link" href="pages/evenement/evenement.html">
+            <a class="nav-link" th:href="@{/even-abonne}">
               <i class="mdi mdi-application menu-icon"></i>
               <span class="menu-title">Evènements</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/amis/amis.html">
+            <a class="nav-link" href="#">
               <i class="mdi mdi-account-multiple menu-icon"></i>
               <span class="menu-title">Amis</span>
             </a>
           </li>
         
           <li class="nav-item">
-            <a class="nav-link" href="pages/profil/profil.html">
+            <a class="nav-link" href="#">
               <i class="mdi mdi-account-box-outline menu-icon"></i>
               <span class="menu-title">Profil</span>
             </a>
@@ -208,7 +209,7 @@
               <div class="d-flex justify-content-between flex-wrap">
                 <div class="d-flex align-items-end flex-wrap">
                   <div class="me-md-3 me-xl-5">
-                    <h2>Bienvenue OUEDRAOGO,</h2>
+                    <h2>Bienvenue ABONNE,</h2>
                     <p class="mb-md-0">dans votre tableau de bord</p>
                   </div>
                   <div class="d-flex">
@@ -226,7 +227,7 @@
 
 <!-- partie de evenement catégorie et utilisateur -->
 
-          <div class="row">
+         <!-- <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body dashboard-tabs p-0">
@@ -390,16 +391,16 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div>-->
 
-          <!-- fin de evenement cathégorie et utilisateur -->
+          <!-- fin de evenement -->
           
           <!-- évènement récent -->
           <div class="row">
             <div class="col-md-12 stretch-card">
               <div class="card">
                 <div class="card-body">
-                  <p class="card-title">Evènements Récents</p>
+                  <p class="card-title">Mes événements</p>
                   <div class="table-responsive">
                     <table id="recent-purchases-listing" class="table">
                       <thead>
@@ -411,6 +412,21 @@
                             <th>Promoteur</th>
                         </tr>
                       </thead>
+                      
+                      <tbody>
+                                        	<!-- Utilisez Thymeleaf pour itérer sur la liste des événements -->
+                                            <tr th:each="evenement : ${mesEvenements}"
+                                                class="d-flex justify-content-between flex-wrap">
+                                                <td th:text="${evenement.intitule}" class="mt-3"></td>
+                                                <td th:text="${evenement.categorie}" class="mt-3"></td>
+                                                <td th:text="${evenement.lieu}" class="mt-3"></td>
+                                                <td th:text="${evenement.dateDebut}" class="mt-3"></td>
+                                                <td th:text="${evenement.dateFin}" class="mt-3"
+                                                    style="margin-right: 30px;"></td>
+                                                <td><a class="btn btn-primary mt-2 mt-xl-0 text-white"
+                                                        th:href="@{/supprimer-evenement/{id}(id=${evenement.id})}">Supprimer</a></td>
+                                            </tr>
+                            </tbody>
                       <tbody>
                         <tr>
                             <td>FESPACO</td>
@@ -448,7 +464,7 @@
                     <td>SIG</td>
                 </tr>
                       
-                      </tbody>
+                      </tbody> 
                     </table>
                   </div>
                 </div>
@@ -460,7 +476,7 @@
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
         <div class="d-sm-flex justify-content-center justify-content-sm-between">
-          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <a href="https://www.bootstrapdash.com/" target="_blank">bootstrapdash.com </a>2021</span>
+          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <a href="https://www.bootstrapdash.com/" target="_blank">bootstrapdash.com </a>2024</span>
           <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Only the best <a href="https://www.bootstrapdash.com/" target="_blank"> Bootstrap dashboard  </a> templates</span>
         </div>
         </footer>

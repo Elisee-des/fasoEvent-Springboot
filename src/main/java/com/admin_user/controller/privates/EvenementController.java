@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.admin_user.model.Evenement;
 import com.admin_user.service.EvenService;
+import com.admin_user.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -21,6 +22,9 @@ public class EvenementController {
 	
 	@Autowired
 	EvenService evenService;
+	
+	@Autowired
+	UserService userService;
 
 	//Acceder a la page de la liste des evenements
 	@GetMapping("/evenement-page")
@@ -28,6 +32,14 @@ public class EvenementController {
 	    List<Evenement> evenements = evenService.getAllEvenements();
 	    model.addAttribute("evenements",evenements);
 	    return "private/evenement/evenement";
+	}
+	
+	//Les evenements visibles par les abonne
+	@GetMapping("/even-abonne")
+	public String evenPageAbonne(Model model) {
+	    List<Evenement> evenements = evenService.getAllEvenements();
+	    model.addAttribute("evenements",evenements);
+	    return "private/abonne/LesEven";
 	}
 
 	////////// Vers la page d'accueil ////////////////
@@ -78,5 +90,20 @@ public class EvenementController {
 		return "redirect:/evenement-page";
 		
 	}
+	
+	
+	///////////////// POUR UN ABONNE///////////////
+	 @GetMapping("/mes-evenements")
+	 public String mesEvenements(Model model, Principal principal) {
+	    // List<Evenement> mesEvenements = userService.getMesEvenements(principal.getName());
+	     //model.addAttribute("mesEvenements", mesEvenements);
+	     return "private/abonne/mesEvenements";
+	 }
 
+	    @PostMapping("/ajouter-evenement/{evenementId}")
+	    public String ajouterEvenAbonne(@PathVariable Long evenementId, Principal principal) {
+	        // Implémentez la logique pour ajouter un événement à la liste de l'abonné
+	       // userService.ajouterEvenAbonne(principal.getName(), evenementId);
+	        return "redirect:/mes-evenements";
+	    }
 }
