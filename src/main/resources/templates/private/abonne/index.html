@@ -26,7 +26,7 @@
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="navbar-brand-wrapper d-flex justify-content-center">
         <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
-		<a class="navbar-brand brand-logo" href="index.html"><strong
+		<a class="navbar-brand brand-logo" th:href="@{/}"><strong
 							style="color: #ff6b3b;;">Faso</strong><strong>Event</strong></a> 
          <a class="navbar-brand brand-logo-mini" href="index.html"><img th:src="@{assets_private/images/logo-mini.svg}" alt="logo"/></a>
           <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -55,18 +55,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown">
               <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
-              <a class="dropdown-item">
-                <div class="item-thumbnail">
-                    <img th:src="@{asset_private/images/faces/face4.jpg}" alt="image" class="profile-pic">
-                </div>
-                <div class="item-content flex-grow">
-                  <h6 class="ellipsis font-weight-normal">David Grey
-                  </h6>
-                  <p class="font-weight-light small-text text-muted mb-0">
-                    The meeting is cancelled
-                  </p>
-                </div>
-              </a>
+              
               <a class="dropdown-item">
                 <div class="item-thumbnail">
                     <img th:src="@{assets_private/images/faces/face2.jpg}" alt="image" class="profile-pic">
@@ -93,26 +82,13 @@
               </a>
             </div>
           </li>
-          <li class="nav-item dropdown me-4">
+          <!--<li class="nav-item dropdown me-4">
             <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
               <i class="mdi mdi-bell mx-0"></i>
               <span class="count"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="notificationDropdown">
-              <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-              <a class="dropdown-item">
-                <div class="item-thumbnail">
-                  <div class="item-icon bg-success">
-                    <i class="mdi mdi-information mx-0"></i>
-                  </div>
-                </div>
-                <div class="item-content">
-                  <h6 class="font-weight-normal">Application Error</h6>
-                  <p class="font-weight-light small-text mb-0 text-muted">
-                    Just now
-                  </p>
-                </div>
-              </a>
+           
               <a class="dropdown-item">
                 <div class="item-thumbnail">
                   <div class="item-icon bg-warning">
@@ -140,20 +116,19 @@
                 </div>
               </a>
             </div>
-          </li>
+          </li>-->
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-              <img th:src="@{assetsprivate/images/faces/face5.jpg}" alt="profile"/>
-              <span class="nav-profile-name">Louis Barnett</span>
+              <span class="nav-profile-name">Abonné</span>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
                 <i class="mdi mdi-settings text-primary"></i>
                 Settings
               </a>
-              <a class="dropdown-item">
+              <a class="dropdown-item" th:href="@{/}">
                 <i class="mdi mdi-logout text-primary"></i>
-                Logout
+                Déconnexion
               </a>
             </div>
           </li>
@@ -180,7 +155,7 @@
           <li class="nav-item">
             <a class="nav-link" th:href="@{/even-abonne}">
               <i class="mdi mdi-application menu-icon"></i>
-              <span class="menu-title">Evènements</span>
+              <span class="menu-title">Evénements</span>
             </a>
           </li>
           <li class="nav-item">
@@ -475,11 +450,19 @@
         <!-- content-wrapper ends -->
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
-        <div class="d-sm-flex justify-content-center justify-content-sm-between">
-          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <a href="https://www.bootstrapdash.com/" target="_blank">bootstrapdash.com </a>2024</span>
-          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Only the best <a href="https://www.bootstrapdash.com/" target="_blank"> Bootstrap dashboard  </a> templates</span>
-        </div>
-        </footer>
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-sm-6">
+										<script>document.write(new Date().getFullYear())</script> © FasoEvent.
+									</div>
+									<div class="col-sm-6">
+										<div class="text-sm-end d-none d-sm-block">
+											Developpé par le groupe de java unz
+										</div>
+									</div>
+								</div>
+							</div>
+						</footer>
         <!-- partial -->
       </div>
       <!-- main-panel ends -->

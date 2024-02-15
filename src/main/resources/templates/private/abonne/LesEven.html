@@ -49,7 +49,7 @@
             </div>
           </li>
         </ul>
-        <ul class="navbar-nav navbar-nav-right">
+       <!-- <ul class="navbar-nav navbar-nav-right">
           <li class="nav-item dropdown me-1">
             <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-bs-toggle="dropdown">
               <i class="mdi mdi-message-text mx-0"></i>
@@ -159,7 +159,7 @@
               </a>
             </div>
           </li>
-        </ul>
+        </ul>-->
         <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
           <span class="mdi mdi-menu"></span>
         </button>
@@ -183,7 +183,7 @@
           <li class="nav-item">
             <a class="nav-link" href="#">
               <i class="mdi mdi-application menu-icon"></i>
-              <span class="menu-title">Evènements</span>
+              <span class="menu-title">Evénements</span>
             </a>
           </li>
          
@@ -213,7 +213,7 @@
 							<div class="d-flex justify-content-between flex-wrap">
 								<div class="d-flex align-items-end flex-wrap">
 									<div class="me-md-3 me-xl-5">
-										<h2>Evènements</h2>
+										<h2>Evénements</h2>
 
 									</div>
 									<div class="d-flex">
@@ -234,7 +234,7 @@
 		  <div class="col-md-12 stretch-card">
 		    <div class="card">
 		      <div class="card-body">
-		        <p class="card-title">Evènements déjà publiés</p>
+		        <p class="card-title">Evénements déjà publiés</p>
 		        <div class="table-responsive">
 		          <table id="recent-purchases-listing" class="table">
 		            <thead>
@@ -257,7 +257,7 @@
 		                <td th:text="${evenement.dateFin}"></td>
 		                <td th:text="${evenement.getNomPromoteur()}"></td>
 						<td>						
-							<a class="btn btn-primary mt-2 mt-xl-0 text-white" th:href="@{/AjoutEven/{id}(id=${evenement.id})}">Ajouter</a>
+							<a class="btn btn-primary mt-2 mt-xl-0 text-white" th:href="@{/AjoutEven/{id}(id=${evenement.id})}">Interesser</a>
 			            </td>		             
 			           </tr>
 		            </tbody>
@@ -272,6 +272,7 @@
     </div>
     <!-- page-body-wrapper ends -->
   </div>
+  
 
  
   <!-- container-scroller -->

@@ -16,8 +16,9 @@ public class EvenService {
     @Autowired
     private EvenRepository evenRepository;
 
-    public Evenement ajouterEvenement(Evenement evenement) {
-        return evenRepository.save(evenement);
+    public Evenement ajouterEvenement(Evenement evenement,User promoteur) {
+        evenement.setPromoteur(promoteur);
+    	return evenRepository.save(evenement);
     }
 
     public List<Evenement> getAllEvenements() {
@@ -43,4 +44,11 @@ public class EvenService {
         evenRepository.deleteById(id);
     }
     
+    //Mise a jour d'evenement
+    public void updateEvenement(Evenement evenement) {
+        evenRepository.save(evenement);
+    }
+    
+    
+
 }

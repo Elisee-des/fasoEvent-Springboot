@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.admin_user.model.Evenement;
+import com.admin_user.model.User;
+import com.admin_user.repositories.UserRepository;
 import com.admin_user.service.EvenService;
 import com.admin_user.service.UserService;
 
@@ -24,15 +27,29 @@ public class EvenementController {
 	EvenService evenService;
 	
 	@Autowired
+	UserRepository userRepository;
+	
+	@Autowired
 	UserService userService;
 
 	//Acceder a la page de la liste des evenements
-	@GetMapping("/evenement-page")
+	/*@GetMapping("/evenement-page")
 	public String evenementPage(Model model) {
 	    List<Evenement> evenements = evenService.getAllEvenements();
 	    model.addAttribute("evenements",evenements);
 	    return "private/evenement/evenement";
+	}*/
+	
+	@GetMapping("/evenement-page")
+	public String evenementPage(Model model, Principal principal) {
+	    String emailPromoteurConnecte = principal.getName();
+	    User promoteurConnecte = userRepository.findByEmail(emailPromoteurConnecte);
+	    List<Evenement> evenements = evenService.getEvenementsByPromoteur(promoteurConnecte);
+	    model.addAttribute("evenements", evenements);
+	    return "private/evenement/evenement";
 	}
+	
+	
 	
 	//Les evenements visibles par les abonne
 	@GetMapping("/even-abonne")
@@ -48,9 +65,18 @@ public class EvenementController {
 		return "private/evenement/ajoutEven";
 	}
 	
-	
-	
 	@PostMapping("/evenement-page")
+	public String ajouterEvenement(@ModelAttribute Evenement evenement, Model model, Principal principal) {
+	    String emailPromoteurConnecte = principal.getName();
+	    User promoteurConnecte = userRepository.findByEmail(emailPromoteurConnecte);
+	    evenService.ajouterEvenement(evenement, promoteurConnecte);
+	    model.addAttribute("message", "Evénement ajouté !");
+	    return "redirect:/evenement-page";
+	}
+	
+	
+	
+	/*@PostMapping("/evenement-page")
 	public String ajouterEvenement(@ModelAttribute Evenement evenement, HttpSession session) {
 	    evenService.ajouterEvenement(evenement);
 	    // Mise à jour de la liste des événements
@@ -58,7 +84,7 @@ public class EvenementController {
 	   // List<Evenement> evenements = evenService.getAllEvenements();
 	  //  model.addAttribute("evenements", evenements);
 	    return "private/evenement/evenement";
-	}
+	}*/
 	
 	//Modification d'un évènement
 	@GetMapping("/editEven/{id}")
@@ -73,12 +99,10 @@ public class EvenementController {
 	
 	@PostMapping("/update-Even")
 	public String updateEven(@ModelAttribute Evenement evenement, HttpSession session) {
-		
-	   // session.setAttribute("message", "Evènement mise à jour !");	    
-
-		evenService.ajouterEvenement(evenement);
-		return "redirect:/evenement-page";
+	    evenService.updateEvenement(evenement); 
+	    return "redirect:/evenement-page";
 	}
+
 	
 	//Suppression d'un evenement
 	
@@ -88,22 +112,35 @@ public class EvenementController {
 		evenService.deleteEven(id);
 		// session.setAttribute("message", "Evénement supprimé avec succès !");	    
 		return "redirect:/evenement-page";
-		
 	}
 	
 	
 	///////////////// POUR UN ABONNE///////////////
-	 @GetMapping("/mes-evenements")
-	 public String mesEvenements(Model model, Principal principal) {
-	    // List<Evenement> mesEvenements = userService.getMesEvenements(principal.getName());
-	     //model.addAttribute("mesEvenements", mesEvenements);
-	     return "private/abonne/mesEvenements";
-	 }
+	@PostMapping("/ajouter-evenement")
+	public String ajouterEvenementParAbonne(@RequestParam Long evenementId, Principal principal) {
+	    String emailAbonneConnecte = principal.getName();
+	    User abonneConnecte = userRepository.findByEmail(emailAbonneConnecte);
+	    Evenement evenement = evenService.getEvenementById(evenementId);
+	  //  evenService.ajouterEvenementAbonne(abonneConnecte, evenement);
+	    return "redirect:/evenement-page";
+	}
 
-	    @PostMapping("/ajouter-evenement/{evenementId}")
-	    public String ajouterEvenAbonne(@PathVariable Long evenementId, Principal principal) {
-	        // Implémentez la logique pour ajouter un événement à la liste de l'abonné
-	       // userService.ajouterEvenAbonne(principal.getName(), evenementId);
-	        return "redirect:/mes-evenements";
-	    }
+	
+/*
+	@PostMapping("/ajouter-evenement")
+	public String ajouterEvenement(@RequestParam Long evenementId, Principal principal) {
+	    // Récupérer l'abonné connecté
+	    String emailAbonneConnecte = principal.getName();
+	    User abonneConnecte = userRepository.findByEmail(emailAbonneConnecte);
+
+	    // Récupérer l'événement à ajouter à la liste de l'abonné
+	    Evenement evenement = evenService.getEvenementById(evenementId);
+
+	    // Ajouter l'événement à la liste de l'abonné
+	    userService.ajouterEvenementListe(abonneConnecte, evenement);
+
+	    // Rediriger vers la page des événements après l'ajout
+	    return "redirect:/evenement-page";
+	}*/
+
 }
